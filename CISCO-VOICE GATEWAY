@@ -1,1 +1,151 @@
 
+User Access Verification
+
+Password: 
+Password: 
+
+VOIP-ROUTER>en
+Password: 
+Password: 
+VOIP-ROUTER#sho start
+Using 1587 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname VOIP-ROUTER
+!
+!
+!
+enable password 7 0822455D0A16
+!
+!
+!
+ip dhcp pool voip
+ network 172.16.10.0 255.255.255.0
+ option 150 ip 172.16.10.1
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+username cisco password 7 0822455D0A16
+!
+!
+license udi pid CISCO2811/K9 sn FTX10172ZHY-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+ip domain-name cisco.net
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.101
+ encapsulation dot1Q 101
+ ip address 172.16.10.1 255.255.255.0
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CNO UNAUTHORISED ACCESS-THIS PUNISHABLE BY LAW!!!^C
+!
+!
+!
+!
+telephony-service
+ max-ephones 10
+ max-dn 10
+ ip source-address 172.16.10.1 port 2000
+ auto assign 1 to 10
+!
+ephone-dn 1
+ number 1001
+!
+ephone-dn 2
+ number 1002
+!
+ephone-dn 3
+ number 1003
+!
+ephone-dn 4
+ number 1004
+!
+ephone-dn 5
+ number 1005
+!
+ephone-dn 6
+ number 1006
+!
+ephone 1
+ device-security-mode none
+ mac-address 00E0.B0A2.976A
+ type 7960
+ button 1:3
+!
+ephone 2
+ device-security-mode none
+ mac-address 0001.C7DC.B02D
+ type 7960
+ button 1:1
+!
+ephone 3
+ device-security-mode none
+ mac-address 0004.9A05.2094
+ type 7960
+ button 1:2
+!
+ephone 4
+ device-security-mode none
+ mac-address 000D.BD33.2568
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+VOIP-ROUTER#  
